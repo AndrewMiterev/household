@@ -12,8 +12,10 @@ The "archive" consists of 3 parts:
 <li>private cloud database of photo files</li>
 <li>private slave file storage</li>
 
+<p>
 The database is located on a free MongoDB cloud storage (0.5 gigabytes), 
-which is usually enough for about 1,000,000 photo files. 
+which is usually enough for about 1,000,000 photo files.
+</p>
 
 How file storage can be used: 
 <li>a NAS with Internet access</li>
