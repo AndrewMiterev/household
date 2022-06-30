@@ -1,4 +1,6 @@
 # Household photo archive
-Hi to all!
+Hi all! 
+<p>
 This is test project for combining back-end and front-end modules 
 together.
+</p>
