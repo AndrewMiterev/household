@@ -1,5 +1,6 @@
 package com.example.backend.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,9 +16,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
+import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Collections;
 
+@Slf4j
 @Configuration
 public class SwaggerConfig {
 	private ApiKey jwtApiKey() {
@@ -58,9 +61,14 @@ public class SwaggerConfig {
 				.title("Household Photo Archive")
 				.version("3.0.0")
 				.description("Back-end of Household Photo Archive Application. Maintains a family photo archive (photo album) for all cameras, phones of all family members")
-				.license("License: Shareware || (MIT && (Linkware || Donateware || Beerware))")
+				.license("License: Shareware or (MIT and (Linkware or Donateware or Beerware))")
 				.licenseUrl("https://www.linkedin.com/in/andrew-miterev-9490b2b0/")
 				.contact(new Contact("Andrew Miterev", "https://www.linkedin.com/in/andrew-miterev-9490b2b0/", "andrew.miterev@gmail.com"))
 				.build();
+	}
+
+	@PostConstruct
+	void postConstruct() {
+		log.info("Swagger configuration: Basic and JWT security context loaded ...");
 	}
 }
