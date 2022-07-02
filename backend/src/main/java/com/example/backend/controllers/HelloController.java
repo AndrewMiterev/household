@@ -1,6 +1,5 @@
 package com.example.backend.controllers;
 
-import com.example.backend.common.Constants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.example.backend.common.Constants.ACCESS_ANONYMOUS;
+
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @Validated
 public class HelloController {
-	@PreAuthorize(Constants.ACCESS_ANONYMOUS)
+	@PreAuthorize(ACCESS_ANONYMOUS)
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@Operation(summary = "Say Hellow!")

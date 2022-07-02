@@ -29,14 +29,14 @@ public class UserServiceImpl implements UserService {
 
 	@PostConstruct
 	private void init() {
-		List<User> users = userRepository.findByRole(Role.SYSTEM);
+		List<User> users = userRepository.findByRole(Role.ROLE_SYSTEM);
 		if (users.isEmpty())
 			userRepository.save(
 					User.builder()
 							.email("admin")
-							.name("System administrator")
 							.password(encoder.encode("admin"))
-							.role(Role.SYSTEM)
+							.name("System administrator")
+							.role(Role.ROLE_SYSTEM)
 							.build()
 			);
 	}

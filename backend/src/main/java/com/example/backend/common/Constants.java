@@ -1,11 +1,13 @@
 package com.example.backend.common;
 
-public class Constants {
-	public static final String AUTHENTICATION_PATH = "/api/auth";
-	public static final String REGISTRATION_PATH = "/registration";
-	public static final String LOGIN_PATH = "/login";
+import com.example.backend.domain.entities.Role;
 
-	public static final String[] SWAGER_AUTH_WHITELIST = {
+public interface Constants {
+	String AUTHENTICATION_PATH = "/api/auth";
+	String REGISTRATION_PATH = "/registration";
+	String LOGIN_PATH = "/login";
+
+	String[] SWAGER_AUTH_WHITELIST = {
 			"/v2/api-docs",
 			"/v3/api-docs",
 			"/swagger-resources",
@@ -15,26 +17,23 @@ public class Constants {
 			"/swagger-ui/**",
 			"/webjars/**"
 	};
-	public static final String[] LOGIN_AUTH_WHITELIST = {
+	String[] LOGIN_AUTH_WHITELIST = {
 			AUTHENTICATION_PATH + REGISTRATION_PATH,
 			AUTHENTICATION_PATH + LOGIN_PATH
 	};
-	public static final String[] SOCIAL_LOGIN_AUTH_WHITELIST = {
+	String[] SOCIAL_LOGIN_AUTH_WHITELIST = {
 			// todo delete / and //sizeoffbackend
 			"/",
 			"/sizeoffbackend/**",                          // delete - for test
 			"/login/oauth2/code/**",
 	};
 
-	public static final String ROLE_SYSTEM = "ROLE_SYSTEM";
-	public static final String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";
-	public static final String ROLE_USER = "ROLE_USER";
-	public static final String ROLE_OBSERVER = "ROLE_OBSERVER";
-	public static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
-
-	public static final String ACCESS_ANONYMOUS = "hasRole('" + ROLE_ANONYMOUS + "')";
-	public static final String ACCESS_OBSERVER = "hasRole('" + ROLE_OBSERVER + "')";
-	public static final String ACCESS_USER = "hasRole('" + ROLE_USER + "') or hasRole('" + ROLE_OBSERVER + "')";
-	public static final String ACCESS_ADMINISTRATOR = "hasRole('" + ROLE_ADMINISTRATOR + "') or hasRole('" + ROLE_USER + "') or hasRole('" + ROLE_OBSERVER + "')";
-	public static final String ACCESS_SYSTEM_ADMINISTRATOR = "hasRole('" + ROLE_SYSTEM + "')";
+	String HAS_ROLE = "hasRole('";
+	String ROLE_END = "')";
+	String OR = ROLE_END + " or ";
+	String ACCESS_ANONYMOUS = HAS_ROLE + "ROLE_ANONYMOUS" + ROLE_END;
+	String ACCESS_OBSERVER = HAS_ROLE + Role.ROLE_OBSERVER.name() + ROLE_END;
+	String ACCESS_USER = HAS_ROLE + Role.ROLE_USER.name() + OR + HAS_ROLE + Role.ROLE_OBSERVER.name() + ROLE_END;
+	String ACCESS_ADMINISTRATOR = HAS_ROLE + Role.ROLE_ADMINISTRATOR.name() + OR + HAS_ROLE + Role.ROLE_USER.name() + OR + HAS_ROLE + Role.ROLE_OBSERVER.name() + ROLE_END;
+	String ACCESS_SYSTEM_ADMINISTRATOR = HAS_ROLE + Role.ROLE_SYSTEM.name() + ROLE_END;
 }

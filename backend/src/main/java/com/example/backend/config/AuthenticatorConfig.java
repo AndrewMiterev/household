@@ -23,8 +23,8 @@ public class AuthenticatorConfig implements UserDetailsService {
 		log.trace("user to authenticate {}", email);
 		var user = service.getUserInfo(email)
 				.orElseThrow(() -> new UsernameNotFoundException("User %s not found".formatted(email)));
-		log.debug("{} {} {}", user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getRole().getName()));
+		log.debug("{} {} {}", user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getRole().name()));
 		return new User(user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList(
-				user.getRole().getName()));
+				user.getRole().name()));
 	}
 }
